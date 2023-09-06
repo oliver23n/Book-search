@@ -31,8 +31,8 @@ const typeDefs = `
         description: String!
         title: String!
         bookId: String!
-        image: String!
-        link: String!
+        image: String
+        link: String
 }
     type Mutation {
         login(email:String!, password: String!):Auth

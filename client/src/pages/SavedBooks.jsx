@@ -7,7 +7,7 @@ import {
   Col
 } from 'react-bootstrap';
 
-// import { getMe, deleteBook } from '../utils/API';
+import { getMe, deleteBook } from '../utils/API';
 import Auth from '../utils/auth';
 import { removeBookId } from '../utils/localStorage';
 
@@ -19,14 +19,9 @@ import { REMOVE_BOOK } from'../utils/mutations';
 const SavedBooks = () => {
 
 const {loading, data} = useQuery(GET_ME);
-const userData = data;
+  const userData = data?.me || {};
 
-const [removeBook,{error}]= useMutation(REMOVE_BOOK,{
-  refetchQueries:[
-    GET_ME,
-    'me'
-  ]
-})
+const [removeBook,{error}]= useMutation(REMOVE_BOOK)
 
 
   // const [userData, setUserData] = useState({});
@@ -70,13 +65,13 @@ const [removeBook,{error}]= useMutation(REMOVE_BOOK,{
 
     try {
       const {updateduser} = await removeBook({
-        variables: {bookId},
+        variables: {bookId: bookId},
       });
 
       // upon success, remove book's id from localStorage
       removeBookId(bookId);
     } catch (err) {
-      console.error(err);
+      console.error(JSON.parse(JSON.stringify(err)));
     }
   };
 
