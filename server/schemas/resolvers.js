@@ -57,11 +57,11 @@ const resolvers = {
 
 
         },
-        removeBook: async (parent, { bookId }, context) => {
+        removeBook: async (parent, args , context) => {
             if (context.user) {
                 return User.findOneAndUpdate(
                     { _id: context.user._id },
-                    { $pull: { savedBooks: bookId } },
+                    { $pull: { savedBooks: { bookId: args.deleteBook }} },
                     { new: true }
                 );
             }
