@@ -4,7 +4,7 @@ const { signToken, AuthenticationError } = require('../utils/auth');
 const resolvers = {
 
     Query: {
-        getUser: async (parent, userId) =>{
+        getUser: async (parent, {userId}) =>{
             
             return User.findOne({_id: userId});
         },
@@ -25,10 +25,10 @@ const resolvers = {
             return { token, user };
         },
         login: async (parent, { email, password }) => {
-            const user = await User.findOne({ email });
+            const user = await User.findOne({ email: email });
 
             if (!user) {
-                throw AuthenticationError;
+                throw AuthenticationError;  
             }
 
             const correctPw = await user.isCorrectPassword(password);
