@@ -20,6 +20,7 @@ The technologies used for this app are:
 - [Usage](#usage)
 - [License](#license)
 - [Questions](#questions)
+- [Credits](#credits)
 
 ---
 
@@ -55,4 +56,6 @@ This Project is licenced under MIT license.
 
 You can find more about my work at my Github [oliver23n](https://github.com/oliver23n).
 
+## Credits
 
+Starter code was provided by Columbia Coding Bootcamps. I restructured it to work with GraphQL.
